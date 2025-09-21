@@ -1,5 +1,11 @@
 import "@/assets/styles/globals.css";
-const MAinLayout = ({ children }) => {
+
+export const metadata = {
+  title: "PropertyPulse",
+  description: "Find The Perfect Rental Property",
+  keywords: "rental, property, real estate",
+};
+const MainLayout = ({ children }) => {
   return (
     <html>
       <body>
@@ -9,4 +15,4 @@ const MAinLayout = ({ children }) => {
   );
 };
 
-export default MAinLayout;
+export default MainLayout;
