@@ -4,6 +4,8 @@ import User from "@/models/User";
 import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
+  trustHost: true,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -20,16 +22,44 @@ export const authOptions = {
   callbacks: {
     // Invoked on successful signin
     async signIn({ profile }) {
-      // 1. Connect to database
-      // 2. Check if user exists
-      // 3. If not, then add user to database
-      // 4. Return true to allow sign in
+      try {
+        await connectDB();
+
+        if (!profile?.email) return false;
+
+        const userExists = await User.findOne({ email: profile.email });
+
+        if (!userExists) {
+          const username = (profile.name || profile.email).slice(0, 20);
+          await User.create({
+            email: profile.email,
+            username,
+            image: profile.picture,
+          });
+        }
+
+        return true;
+      } catch (error) {
+        console.error("signIn callback error:", error);
+        return false;
+      }
     },
     // Modifies the session object
     async session({ session }) {
-      // 1. Get user from database
-      // 2. Assign the user id to the session
-      // 3. return session
+      try {
+        await connectDB();
+
+        if (!session?.user?.email) return session;
+
+        const user = await User.findOne({ email: session.user.email });
+        if (user?._id) {
+          session.user.id = user._id.toString();
+        }
+        return session;
+      } catch (error) {
+        console.error("session callback error:", error);
+        return session;
+      }
     },
   },
 };
