@@ -36,11 +36,7 @@ const PropertyPage = async ({ params }) => {
             <PropertyDetails property={propertyDoc} />
 
             {/* <!-- Sidebar --> */}
-            <aside className="space-y-4">
-              {/* <BookmarkButton property={property} />
-              <ShareButtons property={property} />
-              <PropertyContactForm property={property} /> */}
-            </aside>
+            <aside className="space-y-4"></aside>
           </div>
         </div>
       </section>
