@@ -10,7 +10,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Navbar = () => {
   const { data: session } = useSession();
-  console.log(session)
+  console.log(session);
   const profileImage = session?.user?.image;
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -219,6 +219,10 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-2"
+                      onClick={() => {
+                        setIsProfileMenuOpen(false);
+                        signOut({ callbackUrl: "/" });
+                      }}
                     >
                       Sign Out
                     </button>
