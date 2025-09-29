@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import logo from "@/assets/images/logo-white.png";
 import profileDefault from "@/assets/images/profile.png";
-import { FaGoogle } from "react-icons/fa";
+import { FaGoogle, FaGithub } from "react-icons/fa";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Navbar = () => {
@@ -108,15 +108,20 @@ const Navbar = () => {
           {/* <!-- Right Side Menu (Logged Out) --> */}
           {!session && (
             <div className="hidden md:block md:ml-6">
-              <div className="flex items-center">
+              <div className="flex items-center gap-2">
                 {providers &&
                   Object.values(providers).map((provider) => (
                     <button
                       key={provider.name}
                       onClick={() => signIn(provider.id)}
-                      className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-3"
+                      className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-3 "
                     >
-                      <FaGoogle className="text-white mr-2" />
+                      {provider.id == "google" ? (
+                        <FaGoogle className="text-white mr-2" />
+                      ) : provider.id == "github" ? (
+                        <FaGithub className="text-white mr-2" />
+                      ) : null}
+
                       <span>Login or Register</span>
                     </button>
                   ))}
