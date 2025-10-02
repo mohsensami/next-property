@@ -3,7 +3,7 @@ import connectDB from "@/config/database";
 import Property from "@/models/Property";
 import { getSessionUser } from "@/utils/getSessionUser";
 import profileDefault from "@/assets/images/profile.png";
-// import ProfileProperties from "@/components/ProfileProperties";
+import ProfileProperties from "@/components/ProfileProperties";
 // import { convertToSerializeableObject } from "@/utils/convertToObject";
 
 const ProfilePage = async () => {
@@ -52,7 +52,7 @@ const ProfilePage = async () => {
               {properties.length === 0 ? (
                 <p>You have no property listings</p>
               ) : (
-                <></>
+                <ProfileProperties properties={properties} />
               )}
             </div>
           </div>
