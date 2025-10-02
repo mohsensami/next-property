@@ -42,7 +42,7 @@ async function deleteProperty(propertyId) {
   // Proceed with property deletion
   await property.deleteOne();
 
-  revalidatePath("/", "layout");
+  revalidatePath("/profile", "layout");
 }
 
 export default deleteProperty;
