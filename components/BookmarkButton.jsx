@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { FaBookmark } from "react-icons/fa";
 import { useSession } from "next-auth/react";
-// import bookmarkProperty from "@/app/actions/bookmarkProperty";
+import bookmarkProperty from "@/app/actions/bookmarkProperty";
 // import checkBookmarkStatus from "@/app/actions/checkBookmarkStatus";
 import { toast } from "react-toastify";
 
