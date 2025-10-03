@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { FaBookmark } from "react-icons/fa";
 import { useSession } from "next-auth/react";
 import bookmarkProperty from "@/app/actions/bookmarkProperty";
-// import checkBookmarkStatus from "@/app/actions/checkBookmarkStatus";
+import checkBookmarkStatus from "@/app/actions/checkBookmarkStatus";
 import { toast } from "react-toastify";
 
 const BookmarkButton = ({ property }) => {
@@ -19,12 +19,12 @@ const BookmarkButton = ({ property }) => {
       return;
     }
 
-    // checkBookmarkStatus(property._id).then((res) => {
-    //   if (res.error) toast.error(res.error);
-    //   if (res.isBookmarked) setIsBookmarked(res.isBookmarked);
-    //   setLoading(false);
-    // });
-  }, [property._id, userId]);
+    checkBookmarkStatus(property._id).then((res) => {
+      if (res.error) toast.error(res.error);
+      if (res.isBookmarked) setIsBookmarked(res.isBookmarked);
+      setLoading(false);
+    });
+  }, [property._id, userId, checkBookmarkStatus]);
 
   const handleClick = async () => {
     if (!userId) {
