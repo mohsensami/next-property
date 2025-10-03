@@ -1,17 +1,19 @@
+import BookmarkButton from "@/components/BookmarkButton";
 import PropertyDetails from "@/components/PropertyDetails";
 import PropertyHeaderImage from "@/components/PropertyHeaderImage";
 import PropertyImages from "@/components/PropertyImages";
 import connectDB from "@/config/database";
 import Property from "@/models/Property";
+import { convertToSerializeableObject } from "@/utils/convertToObject";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 
 const PropertyPage = async ({ params }) => {
   await connectDB();
   const propertyDoc = await Property.findById(params.id).lean();
-  // const property = convertToSerializeableObject(propertyDoc);
+  const property = convertToSerializeableObject(propertyDoc);
 
-  if (!propertyDoc) {
+  if (!property) {
     return (
       <h1 className="text-center text-2xl font-bold mt-10">
         Property Not Found
@@ -20,7 +22,7 @@ const PropertyPage = async ({ params }) => {
   }
   return (
     <>
-      <PropertyHeaderImage image={propertyDoc.images[0]} />
+      <PropertyHeaderImage image={property.images[0]} />
       <section>
         <div className="container m-auto py-6 px-6">
           <Link
@@ -33,15 +35,22 @@ const PropertyPage = async ({ params }) => {
       </section>
       <section className="bg-blue-50">
         <div className="container m-auto py-10 px-6">
-          <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
-            <PropertyDetails property={propertyDoc} />
-
-            {/* <!-- Sidebar --> */}
-            <aside className="space-y-4"></aside>
+          <div className="grid grid-cols-1 md:grid-cols-12 w-full gap-6">
+            <div className="col-span-8">
+              <PropertyDetails property={property} />
+            </div>
+            <div className="col-span-4">
+              {/* <!-- Sidebar --> */}
+              <aside className="space-y-4">
+                <BookmarkButton property={property} />
+                {/* <ShareButtons property={property} />
+              <PropertyContactForm property={property} /> */}
+              </aside>
+            </div>
           </div>
         </div>
       </section>
-      <PropertyImages images={propertyDoc.images} />
+      <PropertyImages images={property.images} />
     </>
   );
 };
