@@ -1,3 +1,4 @@
+import PropertySearchForm from "./PropertySearchForm";
 
 const Hero = () => {
   return (
@@ -11,6 +12,7 @@ const Hero = () => {
             Discover the perfect property that suits your needs.
           </p>
         </div>
+        <PropertySearchForm />
       </div>
     </section>
   );
