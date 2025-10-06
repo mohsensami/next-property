@@ -1,6 +1,6 @@
 import connectDB from "@/config/database";
 import Message from "@/models/Message";
-// import MessageCard from "@/components/MessageCard";
+import MessageCard from "@/components/MessageCard";
 import "@/models/Property";
 import { convertToSerializeableObject } from "@/utils/convertToObject";
 import { getSessionUser } from "@/utils/getSessionUser";
@@ -46,9 +46,9 @@ const MessagePage = async () => {
             {messages.length === 0 ? (
               <p>You have no messages</p>
             ) : (
-              messages.map((message) => ({
-                /* <MessageCard key={message._id} message={message} /> */
-              }))
+              messages.map((message) => (
+                <MessageCard key={message._id} message={message} />
+              ))
             )}
           </div>
         </div>
