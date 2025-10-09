@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { GlobalProvider } from "@/context/GlobalContext";
+import "photoswipe/dist/photoswipe.css";
 
 export const metadata = {
   title: "PropertyPulse",
