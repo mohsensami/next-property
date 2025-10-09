@@ -3,7 +3,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import markMessageAsRead from "@/app/actions/markMessageAsRead";
 import deleteMessage from "@/app/actions/deleteMessage";
-// import { useGlobalContext } from "@/context/GlobalContext";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 const MessageCard = ({ message }) => {
   const [isRead, setIsRead] = useState(message.read);
