@@ -8,7 +8,7 @@ import { GlobalProvider } from "@/context/GlobalContext";
 import "photoswipe/dist/photoswipe.css";
 
 export const metadata = {
-  title: "PropertyPulse",
+  title: "Real Estate",
   description: "Find The Perfect Rental Property",
   keywords: "rental, property, real estate",
 };

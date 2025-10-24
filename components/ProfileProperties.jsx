@@ -10,7 +10,7 @@ const ProfileProperties = ({ properties: initialProperties }) => {
 
   const handleDeleteProperty = async (propertyId) => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this property?"
+      "Are you sure you want to delete this property?",
     );
 
     if (!confirmed) return;
@@ -22,7 +22,7 @@ const ProfileProperties = ({ properties: initialProperties }) => {
     toast.success("Property Deleted");
 
     const updatedProperties = properties.filter(
-      (property) => property._id !== propertyId
+      (property) => property._id !== propertyId,
     );
 
     setProperties(updatedProperties);
@@ -50,7 +50,7 @@ const ProfileProperties = ({ properties: initialProperties }) => {
       <div className="mt-2">
         <Link
           href={`/properties/${property._id}/edit`}
-          className="bg-blue-500 text-white px-3 py-3 rounded-md mr-2 hover:bg-blue-600"
+          className="bg-rose-500 text-white px-3 py-3 rounded-md mr-2 hover:bg-rose-600"
         >
           Edit
         </Link>

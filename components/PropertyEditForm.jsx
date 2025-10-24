@@ -58,7 +58,7 @@ const PropertyEditForm = ({ property }) => {
         ></textarea>
       </div>
 
-      <div className="mb-4 bg-blue-50 p-4">
+      <div className="mb-4 bg-rose-50 p-4">
         <label className="block text-gray-700 font-bold mb-2">Location</label>
         <input
           type="text"
@@ -229,7 +229,7 @@ const PropertyEditForm = ({ property }) => {
               value="Wheelchair Accessible"
               className="mr-2"
               defaultChecked={property.amenities.includes(
-                "Wheelchair Accessible"
+                "Wheelchair Accessible",
               )}
             />
             <label htmlFor="amenity_wheelchair_accessible">
@@ -318,7 +318,7 @@ const PropertyEditForm = ({ property }) => {
         </div>
       </div>
 
-      <div className="mb-4 bg-blue-50 p-4">
+      <div className="mb-4 bg-rose-50 p-4">
         <label className="block text-gray-700 font-bold mb-2">
           Rates (Leave blank if not applicable)
         </label>
@@ -413,7 +413,7 @@ const PropertyEditForm = ({ property }) => {
       </div>
       <div>
         <button
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
+          className="bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
           type="submit"
         >
           Update Property

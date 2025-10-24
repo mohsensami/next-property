@@ -63,7 +63,7 @@ const MessageCard = ({ message }) => {
       <button
         onClick={handleReadClick}
         className={`mt-4 mr-3 ${
-          isRead ? "bg-gray-300" : "bg-blue-500 text-white"
+          isRead ? "bg-gray-300" : "bg-rose-500 text-white"
         } py-1 px-3 rounded-md`}
       >
         {isRead ? "Mark As New" : "Mark As Read"}

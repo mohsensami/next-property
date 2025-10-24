@@ -35,7 +35,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-blue-700 border-b border-blue-500">
+    <nav className="bg-rose-700 border-b border-rose-500">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-20 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
@@ -70,10 +70,10 @@ const Navbar = () => {
           <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
             {/* <!-- Logo --> */}
             <Link className="flex flex-shrink-0 items-center" href="/">
-              <Image className="h-10 w-auto" src={logo} alt="PropertyPulse" />
+              <Image className="h-10 w-auto" src={logo} alt="RealEstate" />
 
               <span className="hidden md:block text-white text-2xl font-bold ml-2">
-                PropertyPulse
+                Real Estate
               </span>
             </Link>
             {/* <!-- Desktop Menu Hidden below md screens --> */}

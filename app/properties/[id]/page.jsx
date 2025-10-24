@@ -35,7 +35,7 @@ const PropertyPage = async ({ params }) => {
           </Link>
         </div>
       </section>
-      <section className="bg-blue-50">
+      <section className="bg-rose-50">
         <div className="container m-auto py-10 px-6">
           <div className="grid grid-cols-1 md:grid-cols-12 w-full gap-6">
             <div className="col-span-8">
