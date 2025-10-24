@@ -1,19 +1,27 @@
 "use client";
-import ClipLoader from "react-spinners/ClipLoader";
+
+import "./loading.css";
 
 const override = {
   display: "block",
   margin: "100px auto",
 };
 
-const LoadingPage = () => {
+function LoadingPage() {
   return (
-    <ClipLoader
-      color="#3b82f6"
-      cssOverride={override}
-      size={150}
-      aria-label="Loading Spinner"
-    />
+    <div className="h-screen">
+      <div className="hourglassBackground">
+        <div className="hourglassContainer">
+          <div className="hourglassCurves"></div>
+          <div className="hourglassCapTop"></div>
+          <div className="hourglassGlassTop"></div>
+          <div className="hourglassSand"></div>
+          <div className="hourglassSandStream"></div>
+          <div className="hourglassCapBottom"></div>
+          <div className="hourglassGlass"></div>
+        </div>
+      </div>
+    </div>
   );
-};
+}
 export default LoadingPage;
