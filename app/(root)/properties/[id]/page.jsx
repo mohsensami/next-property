@@ -38,12 +38,12 @@ const PropertyPage = async ({ params }) => {
       <section className="bg-rose-50">
         <div className="container m-auto py-10 px-6">
           <div className="grid grid-cols-1 md:grid-cols-12 w-full gap-6">
-            <div className="col-span-8">
+            <div className="md:col-span-8">
               <PropertyDetails property={property} />
             </div>
-            <div className="col-span-4">
+            <div className="md:col-span-4">
               {/* <!-- Sidebar --> */}
-              <aside className="space-y-4  h-screen sticky top-12 ">
+              <aside className="space-y-4  md:h-screen sticky top-12 ">
                 <div className="bg-white p-6 rounded-lg shadow-md">
                   <BookmarkButton property={property} />
                   <ShareButtons property={property} />

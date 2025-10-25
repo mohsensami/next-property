@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import logo from "@/assets/images/logo-white.png";
 import profileDefault from "@/assets/images/profile.png";
-import { FaGoogle, FaGithub } from "react-icons/fa";
+import { FaGoogle, FaGithub, FaUser } from "react-icons/fa";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import UnreadMessageCount from "./UnreadMessageCount";
 
@@ -20,19 +20,19 @@ const Navbar = () => {
 
   const pathname = usePathname();
 
-  useEffect(() => {
-    const setAuthProviders = async () => {
-      const res = await getProviders();
-      setProviders(res);
-    };
+  // useEffect(() => {
+  //   const setAuthProviders = async () => {
+  //     const res = await getProviders();
+  //     setProviders(res);
+  //   };
 
-    setAuthProviders();
+  //   setAuthProviders();
 
-    // NOTE: close mobile menu if the viewport size is changed
-    window.addEventListener("resize", () => {
-      setIsMobileMenuOpen(false);
-    });
-  }, []);
+  //   // NOTE: close mobile menu if the viewport size is changed
+  //   window.addEventListener("resize", () => {
+  //     setIsMobileMenuOpen(false);
+  //   });
+  // }, []);
 
   return (
     <nav className="bg-rose-700 border-b border-rose-500">
@@ -71,7 +71,6 @@ const Navbar = () => {
             {/* <!-- Logo --> */}
             <Link className="flex flex-shrink-0 items-center" href="/">
               <Image className="h-10 w-auto" src={logo} alt="RealEstate" />
-
               <span className="hidden md:block text-white text-2xl font-bold ml-2">
                 Real Estate
               </span>
@@ -113,7 +112,7 @@ const Navbar = () => {
           {!session && (
             <div className="hidden md:block md:ml-6">
               <div className="flex items-center gap-2">
-                {providers &&
+                {/* {providers &&
                   Object.values(providers).map((provider) => (
                     <button
                       key={provider.name}
@@ -128,7 +127,15 @@ const Navbar = () => {
 
                       <span>Login or Register</span>
                     </button>
-                  ))}
+                  ))}*/}
+
+                <Link
+                  className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-3 "
+                  href="/login"
+                >
+                  <FaUser />
+                  <span className="pl-2">Login / Register</span>
+                </Link>
               </div>
             </div>
           )}
