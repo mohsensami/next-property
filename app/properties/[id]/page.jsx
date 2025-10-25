@@ -43,17 +43,23 @@ const PropertyPage = async ({ params }) => {
             </div>
             <div className="col-span-4">
               {/* <!-- Sidebar --> */}
-              <aside className="space-y-4">
-                <BookmarkButton property={property} />
-                <ShareButtons property={property} />
+              <aside className="space-y-4  h-screen sticky top-12 ">
+                <div className="bg-white p-6 rounded-lg shadow-md">
+                  <BookmarkButton property={property} />
+                  <ShareButtons property={property} />
 
-                <PropertyContactForm property={property} />
+                  <PropertyContactForm property={property} />
+                </div>
               </aside>
             </div>
           </div>
         </div>
       </section>
-      <PropertyImages images={property.images} />
+      <section>
+        <div className="container m-auto py-4 px-6">
+          <PropertyImages images={property.images} />
+        </div>
+      </section>
     </>
   );
 };

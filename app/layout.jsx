@@ -8,7 +8,10 @@ import { GlobalProvider } from "@/context/GlobalContext";
 import "photoswipe/dist/photoswipe.css";
 
 export const metadata = {
-  title: "Real Estate",
+  title: {
+    template: `%s | Real Estate`,
+    default: "Real Estate",
+  },
   description: "Find The Perfect Rental Property",
   keywords: "rental, property, real estate",
 };

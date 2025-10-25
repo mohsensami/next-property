@@ -2,15 +2,19 @@
 
 /* Theme customization */
 @theme {
-  /* Custom font */
-  --font-sans: "Poppins", sans-serif;
+    /* Custom font */
+    --font-sans: "Poppins", sans-serif;
 
-  /* Custom grid template */
-  --grid-cols-70/30: 70% 28%;
+    /* Custom grid template */
+    --grid-cols-70/30: 70% 28%;
 }
 
 /* Optional: global styles */
 html,
 body {
-  @apply font-sans bg-white text-gray-900;
+    @apply font-sans bg-white text-gray-900;
+}
+
+button {
+    cursor: pointer;
 }
