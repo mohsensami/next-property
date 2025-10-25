@@ -1,3 +1,5 @@
+import Providers from "../Providers";
+
 const LoginPage = () => {
   // useEffect(() => {
   //   const setAuthProviders = async () => {
@@ -108,6 +110,9 @@ const LoginPage = () => {
                 </button>
               </div>
             </form>
+            <div>
+              <Providers />
+            </div>
           </div>
           {/* {providers &&
             Object.values(providers).map((provider) => (
