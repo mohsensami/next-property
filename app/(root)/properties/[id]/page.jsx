@@ -44,7 +44,7 @@ const PropertyPage = async ({ params }) => {
             <div className="md:col-span-4">
               {/* <!-- Sidebar --> */}
               <aside className="space-y-4  md:h-screen sticky top-12 ">
-                <div className="bg-white p-6 rounded-lg shadow-md">
+                <div className="bg-white p-6 rounded-md shadow-md">
                   <BookmarkButton property={property} />
                   <ShareButtons property={property} />
 

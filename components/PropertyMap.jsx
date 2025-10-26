@@ -7,15 +7,15 @@ import "leaflet/dist/leaflet.css";
 // Dynamically import only the React-Leaflet parts (disable SSR completely)
 const MapContainer = dynamic(
   () => import("react-leaflet").then((mod) => mod.MapContainer),
-  { ssr: false }
+  { ssr: false },
 );
 const TileLayer = dynamic(
   () => import("react-leaflet").then((mod) => mod.TileLayer),
-  { ssr: false }
+  { ssr: false },
 );
 const Marker = dynamic(
   () => import("react-leaflet").then((mod) => mod.Marker),
-  { ssr: false }
+  { ssr: false },
 );
 const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
   ssr: false,
@@ -50,8 +50,8 @@ const PropertyMap = ({ property }) => {
 
         const res = await fetch(
           `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-            address
-          )}`
+            address,
+          )}`,
         );
 
         const data = await res.json();
@@ -83,7 +83,7 @@ const PropertyMap = ({ property }) => {
   //     return <p>Could not load map for this property.</p>;
 
   return (
-    <div className="w-full h-[400px] rounded-xl overflow-hidden">
+    <div className="w-full h-[400px] rounded-md overflow-hidden">
       <MapContainer
         center={[lat, lng]}
         zoom={13}

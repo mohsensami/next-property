@@ -11,7 +11,7 @@ import PropertyMap from "@/components/PropertyMap";
 const PropertyDetails = ({ property }) => {
   return (
     <main>
-      <div className="bg-white p-6 rounded-lg shadow-md text-center md:text-left">
+      <div className="bg-white p-6 rounded-md shadow-md text-center md:text-left">
         <div className="text-gray-500 mb-4">{property.type}</div>
         <h1 className="text-3xl font-bold mb-4">{property.name}</h1>
         <div className="text-gray-500 mb-4 flex align-middle justify-center md:justify-start">
@@ -59,7 +59,7 @@ const PropertyDetails = ({ property }) => {
         </div>
       </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+      <div className="bg-white p-6 rounded-md shadow-md mt-6">
         <h3 className="text-lg font-bold mb-6">Description & Details</h3>
         <div className="flex justify-center gap-4 text-blue-500 mb-4 text-xl space-x-9">
           <p>
@@ -79,7 +79,7 @@ const PropertyDetails = ({ property }) => {
         <p className="text-gray-500 mb-4">{property.description}</p>
       </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+      <div className="bg-white p-6 rounded-md shadow-md mt-6">
         <h3 className="text-lg font-bold mb-6">Amenities</h3>
 
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 list-none space-y-2">
@@ -90,7 +90,7 @@ const PropertyDetails = ({ property }) => {
           ))}
         </ul>
       </div>
-      <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+      <div className="bg-white p-6 rounded-md shadow-md mt-6">
         {/* {JSON.stringify(property)} */}
         <PropertyMap property={property} />
       </div>
