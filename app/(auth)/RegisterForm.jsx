@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 export default function RegisterForm() {
   const router = useRouter();
@@ -38,15 +39,37 @@ export default function RegisterForm() {
       body: JSON.stringify({ name, email, password }),
     });
 
-    setLoading(false);
-
     if (!res.ok) {
       const text = await res.text();
       setError(text || "Something failed");
+      setLoading(false);
       return;
     }
 
-    router.push("/login");
+    // Auto-login after successful registration
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        setError(
+          "Registration successful but login failed. Please try logging in manually."
+        );
+        setLoading(false);
+        return;
+      }
+
+      // Redirect to home page after successful login
+      router.push("/");
+    } catch (error) {
+      setError(
+        "Registration successful but login failed. Please try logging in manually."
+      );
+      setLoading(false);
+    }
   }
 
   return (
