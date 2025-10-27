@@ -1,5 +1,6 @@
 import connectDB from "@/config/database";
 import User from "@/models/User";
+import bcrypt from "bcryptjs";
 
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
@@ -29,30 +30,39 @@ export const authOptions = {
     }),
     Credentials({
       async authorize(credentials) {
-        const validatedFields = SignInSchema.safeParse(credentials);
-        if (validatedFields.success) {
-          const { email, password } = validatedFields.data;
-          const { data: existingAccount } =
-            await api.accounts.getByProvider(email);
-          if (!existingAccount) return null;
-          const { data: existingUser } = await api.users.getById(
-            existingAccount.userId.toString(),
-          );
-          if (!existingUser) return null;
-          const isValidPassword = await bcrypt.compare(
-            password,
-            existingAccount.password,
-          );
-          if (isValidPassword) {
-            return {
-              id: existingUser.id,
-              name: existingUser.name,
-              email: existingUser.email,
-              image: existingUser.image,
-            };
-          }
+        await connectDB();
+
+        const { email, password } = credentials;
+
+        if (!email || !password) {
+          return null;
         }
-        return null;
+
+        // Find user by email
+        const user = await User.findOne({ email });
+
+        if (!user) {
+          return null;
+        }
+
+        // Check if user has a password (OAuth users might not have one)
+        if (!user.password) {
+          return null;
+        }
+
+        // Verify password
+        const isValidPassword = await bcrypt.compare(password, user.password);
+
+        if (!isValidPassword) {
+          return null;
+        }
+
+        return {
+          id: user._id.toString(),
+          name: user.username,
+          email: user.email,
+          image: user.image,
+        };
       },
     }),
   ],
@@ -74,6 +84,7 @@ export const authOptions = {
             email: profile.email,
             username,
             image: profile.picture,
+            // OAuth users don't need a password
           });
         }
       }
@@ -94,6 +105,7 @@ export const authOptions = {
             email: profile.email,
             username,
             image: profile.avatar_url,
+            // OAuth users don't need a password
           });
         }
       }

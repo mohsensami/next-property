@@ -11,6 +11,10 @@ const UserSchema = new Schema(
       type: String,
       required: [true, "Username is required"],
     },
+    password: {
+      type: String,
+      required: false, // OAuth users don't need passwords
+    },
     image: {
       type: String,
     },
