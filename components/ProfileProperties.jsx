@@ -4,28 +4,49 @@ import Image from "next/image";
 import Link from "next/link";
 // import { toast } from "react-toastify";
 import deleteProperty from "@/app/actions/deleteProperty";
+import Swal from "sweetalert2";
 
 const ProfileProperties = ({ properties: initialProperties }) => {
   const [properties, setProperties] = useState(initialProperties);
 
   const handleDeleteProperty = async (propertyId) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this property?",
-    );
+    // const confirmed = window.confirm(
+    //   "Are you sure you want to delete this property?",
+    // );
 
-    if (!confirmed) return;
+    Swal.fire({
+      title: "Are you sure you want to delete this property?",
+      icon: "error",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
+      reverseButtons: true,
+    });
 
-    const deletePropertyById = deleteProperty.bind(null, propertyId);
-
-    await deletePropertyById();
-
-    toast.success("Property Deleted");
-
-    const updatedProperties = properties.filter(
-      (property) => property._id !== propertyId,
-    );
-
-    setProperties(updatedProperties);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Are you sure you want to delete this property?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const deletePropertyById = deleteProperty.bind(null, propertyId);
+        await deletePropertyById();
+        const updatedProperties = properties.filter(
+          (property) => property._id !== propertyId,
+        );
+        setProperties(updatedProperties);
+        Swal.fire({
+          title: "Deleted!",
+          text: "Property Deleted.",
+          icon: "success",
+        });
+      }
+    });
+    // if (!confirmed) return;
   };
 
   return properties.map((property) => (
