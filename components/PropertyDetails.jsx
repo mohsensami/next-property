@@ -11,6 +11,7 @@ import PropertyMap from "@/components/PropertyMap";
 const PropertyDetails = ({ property }) => {
   return (
     <main>
+      {JSON.stringify(property)}
       <div className="bg-white p-6 rounded-md shadow-md text-center md:text-left">
         <div className="text-gray-500 mb-4">{property.type}</div>
         <h1 className="text-3xl font-bold mb-4">{property.name}</h1>

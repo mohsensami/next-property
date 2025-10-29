@@ -87,6 +87,36 @@ const PropertyAddForm = () => {
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="Zipcode"
         />
+        <div className="flex flex-wrap -mx-2">
+          <div className="w-full sm:w-1/2 px-2">
+            <label htmlFor="lat" className="block text-gray-700 font-bold mb-2">
+              Latitude
+            </label>
+            <input
+              type="number"
+              step="any"
+              id="lat"
+              name="location.lat"
+              className="border rounded w-full py-2 px-3 mb-2"
+              placeholder="e.g. 25.7617"
+              required
+            />
+          </div>
+          <div className="w-full sm:w-1/2 px-2">
+            <label htmlFor="lng" className="block text-gray-700 font-bold mb-2">
+              Longitude
+            </label>
+            <input
+              type="number"
+              step="any"
+              id="lng"
+              name="location.lng"
+              className="border rounded w-full py-2 px-3 mb-2"
+              placeholder="e.g. -80.1918"
+              required
+            />
+          </div>
+        </div>
       </div>
 
       <div className="mb-4 flex flex-wrap">
@@ -342,7 +372,7 @@ const PropertyAddForm = () => {
         <input
           type="text"
           id="seller_name"
-          name="seller_info.name."
+          name="seller_info.name"
           className="border rounded w-full py-2 px-3"
           placeholder="Name"
         />
