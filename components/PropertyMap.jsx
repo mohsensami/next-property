@@ -7,15 +7,15 @@ import "leaflet/dist/leaflet.css";
 // Dynamically import only the React-Leaflet parts (disable SSR completely)
 const MapContainer = dynamic(
   () => import("react-leaflet").then((mod) => mod.MapContainer),
-  { ssr: false },
+  { ssr: false }
 );
 const TileLayer = dynamic(
   () => import("react-leaflet").then((mod) => mod.TileLayer),
-  { ssr: false },
+  { ssr: false }
 );
 const Marker = dynamic(
   () => import("react-leaflet").then((mod) => mod.Marker),
-  { ssr: false },
+  { ssr: false }
 );
 const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
   ssr: false,
@@ -50,8 +50,8 @@ const PropertyMap = ({ property }) => {
 
         const res = await fetch(
           `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-            address,
-          )}`,
+            address
+          )}`
         );
 
         const data = await res.json();
@@ -85,7 +85,10 @@ const PropertyMap = ({ property }) => {
   return (
     <div className="w-full h-[400px] rounded-md overflow-hidden">
       <MapContainer
-        center={[lat, lng]}
+        center={[
+          String(property?.location?.lat),
+          String(property?.location?.lng),
+        ]}
         zoom={13}
         scrollWheelZoom={false}
         className="w-full h-full"
@@ -95,7 +98,13 @@ const PropertyMap = ({ property }) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {customIcon && (
-          <Marker position={[lat, lng]} icon={customIcon}>
+          <Marker
+            position={[
+              String(property?.location?.lat),
+              String(property?.location?.lng),
+            ]}
+            icon={customIcon}
+          >
             <Popup>
               <strong>{property.name}</strong>
               <br />

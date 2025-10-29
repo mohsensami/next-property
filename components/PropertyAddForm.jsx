@@ -1,6 +1,13 @@
 "use client";
 
+import { useState } from "react";
+import dynamic from "next/dynamic";
 import addProperty from "@/app/actions/addProperty";
+
+const LocationPickerMap = dynamic(
+  () => import("@/components/LocationPickerMap"),
+  { ssr: false }
+);
 
 const PropertyAddForm = () => {
   return (
@@ -57,6 +64,8 @@ const PropertyAddForm = () => {
 
       <div className="mb-4 bg-rose-50 p-4">
         <label className="block text-gray-700 font-bold mb-2">Location</label>
+        {/* Hidden inputs bound to map selection */}
+        <HiddenLatLngInputs />
         <input
           type="text"
           id="street"
@@ -87,36 +96,7 @@ const PropertyAddForm = () => {
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="Zipcode"
         />
-        <div className="flex flex-wrap -mx-2">
-          <div className="w-full sm:w-1/2 px-2">
-            <label htmlFor="lat" className="block text-gray-700 font-bold mb-2">
-              Latitude
-            </label>
-            <input
-              type="number"
-              step="any"
-              id="lat"
-              name="location.lat"
-              className="border rounded w-full py-2 px-3 mb-2"
-              placeholder="e.g. 25.7617"
-              required
-            />
-          </div>
-          <div className="w-full sm:w-1/2 px-2">
-            <label htmlFor="lng" className="block text-gray-700 font-bold mb-2">
-              Longitude
-            </label>
-            <input
-              type="number"
-              step="any"
-              id="lng"
-              name="location.lng"
-              className="border rounded w-full py-2 px-3 mb-2"
-              placeholder="e.g. -80.1918"
-              required
-            />
-          </div>
-        </div>
+        <MapLatLngSection />
       </div>
 
       <div className="mb-4 flex flex-wrap">
@@ -437,3 +417,24 @@ const PropertyAddForm = () => {
 };
 
 export default PropertyAddForm;
+
+// Local helper components to keep state and hidden inputs near the form
+function MapLatLngSection() {
+  const [coords, setCoords] = useState({ lat: null, lng: null });
+  return (
+    <div className="mt-2">
+      <LocationPickerMap
+        value={coords}
+        onChange={(c) => setCoords({ lat: c.lat, lng: c.lng })}
+      />
+      {/* Sync to hidden inputs below via a context-less pattern */}
+      <input type="hidden" name="location.lat" value={coords.lat ?? ""} />
+      <input type="hidden" name="location.lng" value={coords.lng ?? ""} />
+    </div>
+  );
+}
+
+function HiddenLatLngInputs() {
+  // placeholder to ensure the input order remains consistent if needed later
+  return null;
+}
