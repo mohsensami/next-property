@@ -89,7 +89,7 @@ const PropertyMap = ({ property }) => {
           String(property?.location?.lat),
           String(property?.location?.lng),
         ]}
-        zoom={13}
+        zoom={6}
         scrollWheelZoom={false}
         className="w-full h-full"
       >

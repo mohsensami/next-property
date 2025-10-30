@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
+import "leaflet/dist/leaflet.css";
 
 // Dynamically import react-leaflet parts to avoid SSR issues
 const MapContainer = dynamic(
@@ -79,9 +80,9 @@ export default function LocationPickerMap({ value, onChange }) {
   if (!isClient) return null;
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 overflow-hidden">
       <div className="text-sm text-gray-600">
-        روی نقشه کلیک کنید یا نشانگر را جابجا کنید تا موقعیت تنظیم شود.
+        Click on the map or move the marker to adjust the position.
       </div>
       <MapContainer
         center={center}
