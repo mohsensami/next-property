@@ -29,6 +29,8 @@ async function updateProperty(propertyId, formData) {
       city: formData.get("location.city"),
       state: formData.get("location.state"),
       zipcode: formData.get("location.zipcode"),
+      lat: formData.get("location.lat"),
+      lng: formData.get("location.lng"),
     },
     beds: formData.get("beds"),
     baths: formData.get("baths"),
