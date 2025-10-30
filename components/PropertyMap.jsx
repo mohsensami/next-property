@@ -22,8 +22,6 @@ const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
 });
 
 const PropertyMap = ({ property }) => {
-  const [lat, setLat] = useState("35");
-  const [lng, setLng] = useState("45");
   const [loading, setLoading] = useState(true);
   const [geocodeError, setGeocodeError] = useState(false);
   const [customIcon, setCustomIcon] = useState(null);
@@ -61,12 +59,6 @@ const PropertyMap = ({ property }) => {
           setLoading(false);
           return;
         }
-
-        const lat = parseFloat(data[0].lat);
-        const lng = parseFloat(data[0].lon);
-
-        setLat(lat);
-        setLng(lng);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -85,10 +77,7 @@ const PropertyMap = ({ property }) => {
   return (
     <div className="w-full h-[400px] rounded-md overflow-hidden">
       <MapContainer
-        center={[
-          String(property?.location?.lat),
-          String(property?.location?.lng),
-        ]}
+        center={[property?.location?.lat, property?.location?.lng]}
         zoom={6}
         scrollWheelZoom={false}
         className="w-full h-full"
@@ -99,10 +88,7 @@ const PropertyMap = ({ property }) => {
         />
         {customIcon && (
           <Marker
-            position={[
-              String(property?.location?.lat),
-              String(property?.location?.lng),
-            ]}
+            position={[property?.location?.lat, property?.location?.lng]}
             icon={customIcon}
           >
             <Popup>

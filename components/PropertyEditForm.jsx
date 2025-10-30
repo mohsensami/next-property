@@ -1,4 +1,13 @@
+"use client";
+
 import updateProperty from "@/app/actions/updateProperty";
+import { useState } from "react";
+import dynamic from "next/dynamic";
+
+const LocationPickerMap = dynamic(
+  () => import("@/components/LocationPickerMap"),
+  { ssr: false }
+);
 
 const PropertyEditForm = ({ property }) => {
   const updatePropertyById = updateProperty.bind(null, property._id);
@@ -93,6 +102,11 @@ const PropertyEditForm = ({ property }) => {
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="Zipcode"
           defaultValue={property.location.zipcode}
+        />
+        {/* Map picker to edit lat/lng */}
+        <MapLatLngSection
+          initialLat={property.location.lat}
+          initialLng={property.location.lng}
         />
       </div>
 
@@ -229,7 +243,7 @@ const PropertyEditForm = ({ property }) => {
               value="Wheelchair Accessible"
               className="mr-2"
               defaultChecked={property.amenities.includes(
-                "Wheelchair Accessible",
+                "Wheelchair Accessible"
               )}
             />
             <label htmlFor="amenity_wheelchair_accessible">
@@ -422,4 +436,19 @@ const PropertyEditForm = ({ property }) => {
     </form>
   );
 };
+
+function MapLatLngSection({ initialLat, initialLng }) {
+  const [coords, setCoords] = useState({ lat: initialLat, lng: initialLng });
+  return (
+    <div className="mt-2">
+      <LocationPickerMap
+        value={coords}
+        onChange={(c) => setCoords({ lat: c.lat, lng: c.lng })}
+      />
+      <input type="hidden" name="location.lat" value={coords.lat ?? ""} />
+      <input type="hidden" name="location.lng" value={coords.lng ?? ""} />
+    </div>
+  );
+}
+
 export default PropertyEditForm;
